@@ -1,23 +1,27 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render } from '@testing-library/react'
+import React from 'react'
+import { rest } from 'msw'
+import { renderWithClient } from './utils'
+import { server } from './setup'
 import App from '../src/App'
-import * as React from 'react'
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-})
-const wrapper = (ui: React.ReactElement) => (
-  <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>
-)
 
 describe('App', () => {
-  it('renders Gauge component', async () => {
-    const result = render(wrapper(<App />))
+  test('successful Gauge component', async () => {
+    const result = renderWithClient(<App />)
 
-    expect(await result.findByText(/Format:/i)).toBeInTheDocument()
+    expect(await result.findByText(/mocked value/i)).toBeInTheDocument()
+  })
+
+  test('handles server error', async () => {
+    server.use(
+      rest.get('*/frontend', (req, res, ctx) => {
+        return res(ctx.status(500))
+      })
+    )
+
+    const result = renderWithClient(<App />)
+
+    expect(
+      await result.findByText(/Oops! An error has occurred/i)
+    ).toBeInTheDocument()
   })
 })
