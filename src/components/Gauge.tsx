@@ -22,7 +22,7 @@ const Gauge = () => {
       </span>
     )
 
-  const { max = 200, min = 0, value = 34, ...rest } = { ...data }
+  const { max = 200, min = 0, value = 34 } = { ...data }
 
   const startAngle = 0
   const endAngle = 180
