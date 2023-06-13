@@ -1,0 +1,29 @@
+.gauge-text-minmax {
+    fill: #292e31;
+    font-size: 1em;
+  }
+
+.indicator-text {
+    padding: 16px;
+    display: inline-block;
+}
+
+.gauge-dial {
+    stroke: #292e31;
+    fill: #292e31;
+}
+
+.gauge-text-value {
+    font-size: 3em;
+    line-height: 1em;
+    font-weight: 800;
+}
+
+.error-message {
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #d5281b;
+    display: block;
+    margin-bottom: 16px;
+  }

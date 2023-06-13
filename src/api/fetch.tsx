@@ -13,6 +13,5 @@ export const fetchGaugeData = async (): Promise<GaugeData> => {
   if (!response.ok) {
     throw Error(response.statusText)
   }
-  const data = response.json()
-  return data
+  return response.json()
 }

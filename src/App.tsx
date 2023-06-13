@@ -5,7 +5,6 @@ function App() {
   return (
     <div>
       <h1>Geckoboard Gauge - Frontend Tech Test</h1>
-      {/* @ts-expect-error Server Component */}
       <Gauge />
     </div>
   )
