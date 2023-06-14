@@ -16,9 +16,6 @@ const Gauge = () => {
       <span className="error-message">
         Oops! An error has occurred: {error.message} {''}
         <p>Please try again</p>
-        <button className="Button" onClick={() => window.location.reload()}>
-          Refresh
-        </button>
       </span>
     )
 
@@ -46,15 +43,12 @@ const Gauge = () => {
 
   return (
     <>
-      <div
-        role="meter"
-        style={{ fontFeatureSettings: "'zero', 'tnum' 1", margin: '60px' }}
-      >
+      <div role="meter">
         <svg
           height={width / 2 + 40}
           width={width}
           view-box={`0 0 ${width / 2} ${width}`}
-          style={{ overflow: 'visible' }}
+          role="img"
         >
           <path
             d={drawArcSvg({
@@ -78,7 +72,7 @@ const Gauge = () => {
             strokeWidth="40"
             stroke="#FF8598"
           />
-          <g id="needle">
+          <g role="needle">
             <polygon
               className="point"
               points={`${centerPoint.x},${centerPoint.y - 10} ${
@@ -88,17 +82,19 @@ const Gauge = () => {
                 centerPoint.y
               })`}
             />
-            <circle cx={centerPoint.x} cy={centerPoint.y} r="14"></circle>
+            <circle cx={centerPoint.x} cy={centerPoint.y} r="14" />
           </g>
-          <text x={minTextX} y={minTextY} className="gauge-text-minmax">
+          <text x={minTextX} y={minTextY} data-testid="min-value">
             £{min}
           </text>
-          <text x={maxTextX} y={maxTextY} className="gauge-text-minmax">
+          <text x={maxTextX} y={maxTextY} data-testid="max-value">
             £{max}
           </text>
         </svg>
         <div>
-          <span className="gauge-text-value">£{value}</span>
+          <span title="value" className="large-label">
+            £{value}
+          </span>
         </div>
       </div>
     </>

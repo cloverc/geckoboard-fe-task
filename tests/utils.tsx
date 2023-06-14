@@ -1,11 +1,19 @@
 import { render } from '@testing-library/react'
 import { rest } from 'msw'
-import * as React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 export const handlers = [
-  rest.get('*/frontend', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ value: 'mocked value' }))
+  rest.get('*/frontend', (_req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        value: 34,
+        min: 0,
+        max: 200,
+        format: 'currency',
+        unit: 'GBP',
+      })
+    )
   }),
 ]
 

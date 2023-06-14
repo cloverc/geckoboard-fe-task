@@ -1,22 +1,16 @@
-.gauge-text-minmax {
-    fill: #292e31;
-    font-size: 1em;
-  }
-
-.indicator-text {
-    padding: 16px;
-    display: inline-block;
-}
-
-.gauge-dial {
-    stroke: #292e31;
-    fill: #292e31;
-}
-
-.gauge-text-value {
+.large-label {
     font-size: 3em;
     line-height: 1em;
     font-weight: 800;
+}
+
+div[role=meter] {
+    font-feature-settings: 'zero', 'tnum' 1;
+}
+
+svg[role=img] {
+    overflow: 'visible';
+    margin: 2em;
 }
 
 .error-message {
@@ -26,4 +20,4 @@
     color: #d5281b;
     display: block;
     margin-bottom: 16px;
-  }
+}
